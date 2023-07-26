@@ -1,0 +1,1107 @@
+import java.util.Scanner;
+import java.io.IOException;
+import java.util.Random;
+
+
+
+ class Main {
+
+    public static void clrscr() throws Exception
+   	    {
+   	        Scanner sc = new Scanner(System.in);
+   	        Scanner scLine = new Scanner(System.in);
+   	        scLine.nextLine();
+   	        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+   	    }
+
+   	    String fhoneNumber;
+   	    static String  i = "yes",dv="";
+   	    static boolean res1,com,dev;
+   	    static int tcm,ttb,tkn,tkl,tkb,tkbl,emb1,emb2,emb3,emb4,dt6,dt7,dt8,dt9;
+   	    static double charge,payment,bmprice,bkprice,deliveryService;
+   	    static int totBk =0,totBm=0,ff,dd=0,bm,bk,totBm1,totBk1,totBk2,totBk3,tot,tc;
+   	    static String add = "yes",add2 = "yes";
+   	    //static BajuMelayu customer1[] = new BajuMelayu[100];
+   	    //static BajuKurung customer[] = new BajuKurung[100];
+   	    static int vv;
+           //static int cm = 0,n=0,l=0,k=0,kl=0;
+   		static      int tb = 0;
+   	    static  int len = 0;
+
+
+   	    public static void main(String[] args) throws Exception
+   	    {
+               BajuMelayu customer1[] = new BajuMelayu[100];
+               BajuKurung customer[] = new BajuKurung[100];
+   	        Scanner sc = new Scanner(System.in);
+   	        //Main mn[] = new Main[100];
+   	        Scanner scLine = new Scanner(System.in);
+   	        //customer1[cm] = new BajuMelayu();
+   	        //customer[n] = new BajuKurung();
+   	        int cm = 0,n=0,l=0,k=0,kl=0;
+   	        System.out.println("WELCOME TO CINTA SAYANG TAILORING SYSTEM");
+   	        System.out.println("----------------------------------------");
+   	        for(;;){
+   	            Choice();
+   	            int ch = sc.nextInt();
+
+   	            if(ch == 1){
+
+   	                ChoiceBajumelayu();
+   	                bm = sc.nextInt();
+
+   	                if (bm == 1){
+
+   	                    sc.nextLine();
+
+   	                    System.out.print("Insert customer  full name: ");
+   	                    String name = scLine.nextLine();
+   	                    System.out.print("Insert phone number: ");
+   	                    String phoneNumber = scLine.nextLine();
+   	                    System.out.print("Insert the amount of deposit: " + "RM");
+   	                    double deposit= sc.nextDouble();
+   	                    String hold = name;
+   	                    int lenght = 5;
+   	                    String on =  name + phoneNumber;
+   	                    StringBuilder sb = new StringBuilder();
+   	                    Random random = new Random();
+   	                    for(int a = 0;a<lenght;a++) {
+
+   	                        int rand = random.nextInt(on.length());
+   	                        char randomChar = on.charAt(rand);
+
+   	                        sb.append(randomChar);
+
+   	                    }
+
+   	                    String randomstring = sb.toString().toUpperCase();
+
+   	                    customer1[cm] = new BajuMelayu(name, phoneNumber, deposit, randomstring);
+   	                    System.out.print("Baju Melayu cekak musang: ");
+   	                    int qty = sc.nextInt();
+   	                    tcm = tcm + qty;
+   	                    customer1[cm].payment(qty,bm);
+   	                    totBm = totBm + qty;
+
+   	                    System.out.print("Delivery Service ? [yes/no]: ");
+   	                    dv = scLine.nextLine();
+
+   	                    if(dv.equalsIgnoreCase("yes")) {
+
+   	                        System.out.print("Customer Info [Address]: ");
+   	                        String add = scLine.nextLine();
+
+   	                        System.out.println("Charge for delivery service is " + "RM" + 5.00 );
+   	                        System.out.println("Delivery Address: " + add);
+   	                        System.out.println("The total price include delivery that has to be paid is " + "RM" + ((customer1[cm].getprice() - customer1[cm].getbalance()) + customer1[cm].getdelivery()));
+   	                        System.out.println(customer1[cm].getorderNum());
+                               customer1[cm].setdata(add);
+   	                    }
+   	                    else if(dv.equalsIgnoreCase("no")){
+   	                        System.out.println("Total balance " + customer1[cm].getName() + " has to be paid is " + "RM" + ((customer1[cm].getprice() - customer1[cm].getbalance())));
+   	                        System.out.println("Order number - " + customer1[cm].getorderNum());
+
+   	                    }
+
+                           cm++;
+   	                    clrscr();
+
+   	                }
+
+   	                else if(bm == 2){
+   	                    sc.nextLine();
+
+
+   	                    System.out.println("Insert customer  full name :");
+   	                    String name = sc.nextLine();
+   	                    System.out.println("Insert phone number :");
+   	                    String phoneNumber = sc.nextLine();
+   	                    System.out.println("Insert the amount of deposit :");
+   	                    double deposit= sc.nextDouble();
+
+   	                    int lenght = 5;
+   	                    String on =  name + phoneNumber;
+   	                    StringBuilder sb = new StringBuilder();
+   	                    Random random = new Random();
+   	                    for(int a = 0;a<lenght;a++) {
+
+   	                        int rand = random.nextInt(on.length());
+   	                        char randomChar = on.charAt(rand);
+
+   	                        sb.append(randomChar);
+   	                    }
+
+   	                    String randomstring = sb.toString().toUpperCase();
+
+   	                    customer1[cm] = new BajuMelayu(name, phoneNumber, deposit, randomstring);
+   	                    System.out.println("Baju Melayu teluk belanga: ");
+   	                    int qty1 = sc.nextInt();
+                        ttb = ttb + qty1;
+   	                    customer1[cm].payment(qty1, bm);
+   	                    totBm = totBm +  qty1;
+
+   	                    System.out.println("Delivery Service ? [yes/no]");
+   	                    dv = scLine.nextLine();
+   	                    if(dv.equalsIgnoreCase("yes")){
+
+   	                        System.out.print("Customer Info [Address]: ");
+   	                        String add = scLine.nextLine();
+   	                        System.out.println("Charge for delivery service RM :5.00 ");
+   	                        System.out.println("Delivery Address :" + add);
+   	                        System.out.println("The total price include delivery that has to be paid is  :" + ((customer1[cm].getprice() - customer1[cm].getbalance()) + customer1[cm].getdelivery()));
+   	                        System.out.println(customer1[cm].getorderNum());
+   	                    }
+   	                    else if(dv.equalsIgnoreCase("no")){
+   	                        System.out.println("Total balance " + customer1[cm].getName() + " has to be paid is rm :" + ((customer1[cm].getprice() - customer1[cm].getbalance())));
+   	                        System.out.println("Order number - " + customer1[cm].getorderNum());
+
+   	                    }
+
+                           cm++;
+   	                    clrscr();
+
+
+   	                }
+
+   	            }
+
+
+   	            else if (ch == 2){
+   	                ChoiceBajukurung();
+   	                bk = sc.nextInt();
+
+   	                if(bk == 1){
+   	                    sc.nextLine();
+
+   	                    System.out.println("please enter customer  full name :");
+   	                    String name = sc.nextLine();
+   	                    System.out.print("please enter Phone number :");
+   	                    String phoneNumber = sc.nextLine();
+
+   	                    System.out.print("enter amount of deposit :");
+   	                    double deposit= sc.nextDouble();
+
+   	                    int lenght = 5;
+   	                    String on =  name + phoneNumber;
+   	                    StringBuilder sb = new StringBuilder();
+   	                    Random random = new Random();
+   	                    for(int a = 0;a<lenght;a++) {
+
+   	                        int rand = random.nextInt(on.length());
+   	                        char randomChar = on.charAt(rand);
+
+   	                        sb.append(randomChar);
+   	                    }
+
+   	                    String randomstring = sb.toString().toUpperCase();
+   	                    customer[n] = new BajuKurung(name, phoneNumber, deposit, randomstring);
+   	                    System.out.println("Baju kurung Normal:");
+   	                    int qty1 = sc.nextInt();
+                        tkn = tkn + qty1;
+   	                    System.out.println("No embroidery:");
+   	                    double emb = sc.nextInt();
+   	                    sc.nextLine();
+   	                    System.out.println("Add embroidery:");
+   	                    emb1 = sc.nextInt();
+   	                    if(emb1>0){
+   	                        dt6 = dt6 + emb1;
+   	                    }
+   	                    customer[n].payment(qty1,bk);
+   	                    totBk = totBk + qty1;
+   	                    customer[n].embr(emb, emb1);
+   	                    System.out.println("Delivery Service ? [yes/no]");
+   	                    dv = scLine.nextLine();
+   	                    if(dv.equalsIgnoreCase("yes")){
+
+   	                        System.out.print("Customer Info [Address] :");
+   	                        String add = scLine.nextLine();
+   	                        System.out.println("Charge for delivery service RM :5.00 ");
+   	                        System.out.println("Delivery Address :" + add);
+   	                        System.out.println("The total price include delivery that has to be paid is rm :" + ((customer[n].getpayment() - customer[n].getbalance()) + customer[n].getdelivery() + customer[n].getAmbriodery()));
+   	                        System.out.println(customer[n].getorderNum());
+   	                    }
+   	                    else if(dv.equalsIgnoreCase("no")){
+   	                        System.out.println("Total balance " + customer[n].getName() + " has to be paid is rm :" + ((customer[n].getpayment() - customer[n].getbalance()) + customer[n].getAmbriodery()));
+   	                        System.out.println("Order number - " + customer[n].getorderNum());
+
+   	                    }
+   	                    n++;
+   	                    clrscr();
+   	                }
+
+   	                else if (bk == 2){
+   	                    sc.nextLine();
+
+   	                    System.out.println("please enter customer  full name :");
+   	                    String name = sc.nextLine();
+   	                    System.out.print("please enter Phone number :");
+   	                    String phoneNumber = sc.nextLine();
+   	                    System.out.print("enter amount of deposit :");
+   	                    double deposit= sc.nextDouble();
+
+   	                    int lenght = 5;
+   	                    String on =  name + phoneNumber;
+   	                    StringBuilder sb = new StringBuilder();
+   	                    Random random = new Random();
+   	                    for(int a = 0;a<lenght;a++) {
+
+   	                        int rand = random.nextInt(on.length());
+   	                        char randomChar = on.charAt(rand);
+
+   	                        sb.append(randomChar);
+   	                    }
+   	                    String randomstring = sb.toString().toUpperCase();
+   	                    customer[n] = new BajuKurung(name, phoneNumber, deposit, randomstring);
+   	                    System.out.println("Baju kurung Normal:");
+   	                    int qty2 = sc.nextInt();
+   	                    tkl = tkl + qty2;
+   	                    System.out.println("No embroidery:");
+   	                    int emb = sc.nextInt();
+   	                    System.out.println("Add embroidery:");
+   	                    emb2 = sc.nextInt();
+   	                    if(emb2>0){
+   	                        dt7 = dt7 + emb2;
+   	                    }
+   	                    customer[n].payment(qty2,bk);
+   	                    totBk = totBk + qty2;
+   	                    customer[n].embr(emb, emb2);
+   	                    System.out.println("Delivery Service ? [yes/no]");
+   	                    dv = scLine.nextLine();
+   	                    if(dv.equalsIgnoreCase("yes")) {
+
+   	                        System.out.print("Customer Info [Address] :");
+   	                        String add = scLine.nextLine();
+   	                        System.out.println("Charge for delivery service RM :5.00 ");
+   	                        System.out.println("Delivery Address :" + add);
+   	                        System.out.println("The total price include delivery that has to be paid is rm :" + ((customer[n].getpayment() - customer[n].getbalance()) + customer[n].getdelivery() + customer[n].getAmbriodery()));
+   	                        System.out.println(customer[n].getorderNum());
+   	                    }
+   	                    else if(dv.equalsIgnoreCase("no")){
+   	                        System.out.println("Total balance " + customer[n].getName() + " has to be paid is rm :" + ((customer[n].getpayment() - customer[n].getbalance()) + customer[n].getAmbriodery()));
+   	                        System.out.println("Order number - " + customer[n].getorderNum());
+
+   	                    }
+   	                    n++;
+   	                    clrscr();
+   	                }
+
+   	                else if(bk == 3){
+   	                    sc.nextLine();
+
+   	                    System.out.println("please enter customer  full name :");
+   	                    String name = scLine.nextLine();
+   	                    System.out.print("please enter Phone number :");
+   	                    String phoneNumber = sc.nextLine();
+   	                    System.out.print("enter amount of deposit :");
+   	                    double deposit= sc.nextDouble();
+
+   	                    int lenght = 5;
+   	                    String on =  name + phoneNumber;
+   	                    StringBuilder sb = new StringBuilder();
+   	                    Random random = new Random();
+
+   	                    for(int a = 0;a<lenght;a++) {
+   	                        int rand = random.nextInt(on.length());
+   	                        char randomChar = on.charAt(rand);
+   	                        sb.append(randomChar);
+   	                    }
+   	                    String randomstring = sb.toString().toUpperCase();
+   	                    customer[n] = new BajuKurung(name, phoneNumber, deposit, randomstring);
+
+   	                    System.out.println("Baju kurung Normal:");
+   	                    int qty3 = sc.nextInt();
+   	                    tkb = tkb + qty3;
+   	                    System.out.println("No embroidery:");
+   	                    int emb = sc.nextInt();
+   	                    System.out.println("Add embroidery:");
+   	                    emb3 = sc.nextInt();
+   	                    if(emb3>0){
+   	                        dt8 = dt8 + emb3;
+   	                    }
+   	                    customer[n].payment(qty3,bk);
+   	                    totBk = totBk + qty3;
+   	                    sc.nextLine();
+   	                    customer[n].embr(emb, emb3);System.out.println("Delivery Service ? [yes/no]");
+   	                    dv = scLine.nextLine();
+   	                    if(dv.equalsIgnoreCase("yes")) {
+
+   	                        System.out.print("Customer Info [Address] :");
+   	                        String add = scLine.nextLine();
+   	                        System.out.println("Charge for delivery service RM :5.00 ");
+   	                        System.out.println("Delivery Address :" + add);
+   	                        System.out.println("The total price include delivery that has to be paid is rm :" + (customer[n].getpayment() - customer[n].getbalance()) + (customer[n].getdelivery() + customer[n].getAmbriodery()));
+   	                        System.out.println(customer[k].getorderNum());
+   	                    }
+   	                    else if(dv.equalsIgnoreCase("no")){
+   	                        System.out.println("Total balance " + customer[n].getName()+ " has to be paid is rm :" + ((customer[n].getpayment() - customer[n].getbalance()) + customer[n].getAmbriodery()));
+   	                        System.out.println("Order number - " + customer[n].getorderNum());
+
+   	                    }
+   	                    n++;
+   	                    clrscr();
+   	                }
+
+   	                else if (bk == 4){
+   	                    sc.nextLine();
+
+   	                    System.out.println("please enter customer  full name :");
+   	                    String name = scLine.nextLine();
+   	                    System.out.print("please enter Phone number :");
+   	                    String phoneNumber = scLine.nextLine();
+   	                    System.out.print("enter amount of deposit :");
+   	                    double deposit= sc.nextDouble();
+
+   	                    int lenght = 5;
+   	                    String on =  name + phoneNumber;
+   	                    StringBuilder sb = new StringBuilder();
+   	                    Random random = new Random();
+   	                    for(int a = 0;a<lenght;a++) {
+
+   	                        int rand = random.nextInt(on.length());
+   	                        char randomChar = on.charAt(rand);
+
+   	                        sb.append(randomChar);
+   	                    }
+   	                    String randomstring = sb.toString().toUpperCase();
+   	                    customer[n] = new BajuKurung(name, phoneNumber, deposit, randomstring);
+
+   	                    System.out.println("Baju kurung Normal:");
+   	                    int qty4 = sc.nextInt();
+   	                    tkbl = tkbl + qty4;
+   	                    System.out.println("No embroidery:");
+   	                    int emb = sc.nextInt();
+   	                    System.out.println("Add embroidery:");
+   	                    emb4 = sc.nextInt();
+   	                    System.out.println("Delivery Service ? [yes/no]");
+   	                    String dv = scLine.nextLine();
+   	                    if(emb4>0){
+   	                        dt9 = dt9 + emb4;
+   	                    }
+   	                    customer[n].payment(qty4,bk);
+   	                    totBk = totBk + qty4;
+   	                    customer[n].embr(emb, emb4);
+   	                    if(dv.equalsIgnoreCase("yes")) {
+
+   	                        System.out.print("Customer Info [Address] :");
+   	                        String add = scLine.nextLine();
+   	                        System.out.println("Charge for delivery service RM :5.00 ");
+   	                        System.out.println("Delivery Address :" + add);
+   	                        System.out.println("The total price include delivery that has to be paid is rm :" + (customer[n].getpayment() - customer[n].getbalance()) + customer[n].getdelivery() + customer[n].getAmbriodery());
+   	                        System.out.println(customer[n].getorderNum());
+   	                    }
+   	                    else if(dv.equalsIgnoreCase("no")){
+   	                        System.out.println("Total balance " + customer[n].getName() + " has to be paid is rm :" + ((customer[n].getpayment() - customer[n].getbalance()) + customer[n].getAmbriodery()));
+   	                        System.out.println("Order number - " + customer[n].getorderNum());
+
+   	                    }
+   	                    n++;
+   	                    clrscr();
+   	                }
+
+   	            }
+
+   	            else if(ch == 3){
+
+                  /*for(int d = 0;d<customer1.length;d++){
+
+   	                   tcm =+ customer1[d].getCekakMusang();
+   	                   ttb =+ customer1[d].getTelukBelanga();
+
+				   }
+
+				   for(int c = 0;c<customer.length;c++){
+   	                  tkn =+ customer[c].getKurungNormal();
+   	                  tkl =+ customer[c].getKurungLining();
+   	                  tkb =+ customer[c].getKebayaNormal();
+   	                  tkbl =+ customer[c].getKebayaLining();
+
+
+			       }
+			       */
+
+			       System.out.println("baju melayu cekak musang :" + tcm );
+			       System.out.println("baju melayu teluk belanga :" + ttb);
+			       System.out.println("baju kurung normal with embriodery :" + tkn);
+				   System.out.println("baju kurung lining with embriodery:" + tkl);
+				   System.out.println("baju kebaya normal with embriodery:" + tkb);
+   	               System.out.println("baju kebaya lining with embriodery:" + tkbl);
+			       System.out.println("baju kurung normal with embriodery :" + dt6);
+				   System.out.println("baju kurung lining with embriodery:" + dt7);
+				   System.out.println("baju kebaya normal with embriodery:" + dt8);
+   	               System.out.println("baju kebaya lining with embriodery:" + dt9);
+                   clrscr();
+   	            }
+
+
+   	            else if(ch == 4){
+
+   	                System.out.println("total of Baju Melayu ordered is :" + totBm);
+   	                System.out.println("total of Baju Kurung ordered is :" + totBk);
+                    clrscr();
+
+   	            }
+
+
+
+
+   	            else {
+
+                     typechoice();
+                     tc = sc.nextInt();
+
+
+                     if(tc == 1){
+
+   	                  displayChoice();
+   	                  int c = sc.nextInt();
+
+   	                    if(c == 1){
+
+   	                      System.out.println("order number");
+   	                      String on = scLine.nextLine();
+
+   	                      for(int i=0;i<customer1.length;i++){
+                                   clrscr();
+
+   	                           if(customer1[i].getorderNum().equals(on))
+   							   {
+                                   System.out.println("Customer's Name :" + customer1[i].getName());
+   							       System.out.println("Order Num :" + customer1[i].getorderNum());
+   							       int tot = customer1[i].getCekakMusang() + customer1[i].getTelukBelanga();
+   							       System.out.println("Customer's order quantity :" + tot);
+   							    if(dv.equalsIgnoreCase("yes")){
+   								   System.out.println("The total price : RM" + (customer1[i].getprice() - customer1[i].getbalance()));
+   								   System.out.println("Address if customer request for delivery:" + customer1[i].getaddress());
+   								   System.out.println("delivery charge RM :" + customer1[i].getdelivery());
+   							       System.out.println("Total price left needs to be paid by customer: RM" + ((customer1[i].getprice() - customer1[i].getbalance()) + customer1[i].getdelivery()));
+   							   }
+   							    else if(dv.equalsIgnoreCase("no")){
+
+                                   System.out.println("Total deposit paid: RM"+ customer1[i].getdeposit());
+   								   System.out.println("The total price : RM" + (customer1[i].getprice() - customer1[i].getbalance()));
+
+
+   							   }
+   						    }
+
+
+
+
+   							    /*if(customer1[i].getorderNum().equalsIgnoreCase(on))
+   							    {
+   							       System.out.println("Order Num:" + customer1[i].getorderNum());
+   							       System.out.println("Customer's Name:" + customer1[i].getName());
+   							       System.out.println("Address if customer request for delivery:" + customer1[i].getaddress());
+   							       System.out.println("Customer's order quantity:" + customer1[i].getCekakMusang() + customer1[0].getTelukBelanga());
+   							       System.out.println("The total price : RM" + (customer[i].getpayment()  + customer[i].getdelivery() ));
+   							       System.out.println("Total deposit paid: RM"+ customer1[i].getdeposit());
+   							       System.out.println("Total price left needs to be paid by customer: RM" + (customer[i].getpayment() - customer[i].getbalance()) + customer[i].getdelivery() );
+
+   	                        }*/
+
+   	                    }
+
+					}
+
+					else  if(c == 2){
+					   	                    System.out.println("Name");
+					   						String nm = scLine.nextLine();
+
+					   						   for(int i=0;i<customer1.length;i++){
+					   						       clrscr();
+
+					   							   if(customer1[i].getName().equals(nm))
+					   							   {
+					   								  System.out.println("Customer's Name :" + customer1[i].getName());
+					   								  System.out.println("Order Num :" + customer1[i].getorderNum());
+					   								  int tot = customer1[i].getCekakMusang() + customer1[i].getTelukBelanga();
+					   								  System.out.println("Customer's order quantity :" + tot );
+					   	                                  if(dv.equalsIgnoreCase("yes")){
+					   									       System.out.println("The total price : RM" + (customer1[i].getprice() - customer1[i].getbalance()));
+					   										   System.out.println("Address if customer request for delivery:" + customer1[i].getaddress());
+					   										   System.out.println("delivery charge RM :" + customer1[i].getdelivery());
+					   										   System.out.println("Total price left needs to be paid by customer: RM" + ((customer1[i].getprice() - customer1[i].getbalance()) + customer1[i].getdelivery()));
+					   									   }
+					   									 else if(dv.equalsIgnoreCase("no")){
+
+                                                                 System.out.println("Total deposit paid: RM"+ customer1[i].getdeposit());
+					   											 System.out.println("The total price : RM" + (customer1[i].getprice() - customer1[i].getbalance()));
+
+					   					        	     }
+					   						       }
+
+
+					   						  }
+						          }
+						          else  if(c == 3){
+
+								         System.out.println("Phone Number");
+								         String pn = scLine.nextLine();
+
+								     		for(int i=0;i<customer1.length;i++){
+								     				clrscr();
+
+								     			  if(customer1[i].getphoneNum().equalsIgnoreCase(pn))
+								     			  {
+								     					 System.out.println("Customer's Name :" + customer1[i].getName());
+								     					 System.out.println("Order Num :" + customer1[i].getorderNum());
+								     					 int tot = customer1[i].getCekakMusang() + customer1[i].getTelukBelanga();
+								     					 System.out.println("Customer's order quantity :" + tot);
+								     				       if(dv.equalsIgnoreCase("yes")){
+								     				        	 System.out.println("The total price : RM" + (customer1[i].getprice() - customer1[i].getbalance()));
+								     							 System.out.println("Address if customer request for delivery:" + customer1[i].getaddress());
+								     							 System.out.println("delivery charge RM :" + customer1[i].getdelivery());
+								     							 System.out.println("Total price left needs to be paid by customer: RM" + ((customer1[i].getprice() - customer1[i].getbalance()) + customer1[i].getdelivery()));
+								     					    }
+								     						else if(dv.equalsIgnoreCase("no")){
+
+                                                                 System.out.println("Total deposit paid: RM"+ customer1[i].getdeposit());
+								     							 System.out.println("The total price : RM" + (customer1[i].getprice() - customer1[i].getbalance()));
+
+								     						}
+								     			  }
+								  		   }
+
+							 }
+
+
+
+
+
+					}
+
+
+
+			  }
+
+			      if(tc == 2) {
+                    displayChoice();
+					int c = sc.nextInt();
+
+							      	if(c == 1){
+
+							            System.out.println("Order Number");
+							            String on = scLine.nextLine();
+
+							               for(int i=0;i<customer.length;i++){
+							      	 		   clrscr();
+
+							      				if(customer[i].getorderNum().equalsIgnoreCase(on))
+							      	    		{
+							      					System.out.println("Customer's Name :" + customer[i].getName());
+							      					System.out.println("Order Num :" + customer[i].getorderNum());
+							      					int tot = customer[i].getKurungNormal() + customer[i].getKurungLining() + customer[i].getKebayaNormal() + customer[i].getKebayaLining();
+							      					if(customer[i].getAmbriodery() > 0)
+													    System.out.println("Embriodery Charge RM :" + customer[i].getAmbriodery());
+							      					System.out.println("Customer's order quantity :" + tot);
+							      					   if(dv.equalsIgnoreCase("yes")){
+							      				    		 System.out.println("The total price : RM" + (customer[i].getpayment() - customer[i].getbalance()));
+							      							 System.out.println("Address if customer request for delivery:" + customer1[i].getaddress());
+							      						     System.out.println("delivery charge RM :" + customer[i].getdelivery());
+							      						     System.out.println("Total price left needs to be paid by customer: RM" + ((customer[i].getpayment() - customer[i].getbalance()) + customer[i].getdelivery()));
+							      					   }
+							      					   else if(dv.equalsIgnoreCase("no")){
+
+                                                          System.out.println("Total deposit paid: RM"+ customer[i].getdeposit());
+							      						  System.out.println("The total price : RM" + ((customer[i].getpayment() - customer[i].getbalance()) + customer[i].getAmbriodery()));
+
+
+							      					  }
+							      				 }
+
+
+								         }
+
+
+
+
+
+
+
+										}
+
+										if(c == 2){
+
+							            System.out.println("Name");
+								        String nm = scLine.nextLine();
+
+								           for(int i=0;i<customer.length;i++){
+												clrscr();
+
+											if(customer[i].getName().equalsIgnoreCase(nm))
+											{
+												System.out.println("Customer's Name :" + customer[i].getName());
+												System.out.println("Order Num :" + customer[i].getorderNum());
+												int tot = customer[i].getKurungNormal() + customer[i].getKurungLining() + customer[i].getKebayaNormal() + customer[i].getKebayaLining();
+												if(customer[i].getAmbriodery() > 0)
+													 System.out.println("Embriodery Charge RM :" + customer[i].getAmbriodery());
+												System.out.println("Customer's order quantity :" + tot);
+												   if(dv.equalsIgnoreCase("yes")){
+											    		 System.out.println("The total price : RM" + (customer[i].getpayment() - customer[i].getbalance()));
+														 System.out.println("Address if customer request for delivery:" + customer1[i].getaddress());
+													     System.out.println("delivery charge RM :" + customer[i].getdelivery());
+													     System.out.println("Total price left needs to be paid by customer: RM" + ((customer[i].getpayment() - customer[i].getbalance()) + customer[i].getdelivery()));
+									         	   }
+												   else if(dv.equalsIgnoreCase("no")){
+
+                                                          System.out.println("Total deposit paid: RM"+ customer[i].getdeposit());
+														  System.out.println("The total price : RM" + ((customer[i].getpayment() - customer[i].getbalance()) + customer[i].getAmbriodery()));
+
+												  }
+											 }
+
+
+						               }
+
+
+
+
+
+
+
+							        }
+
+
+                                        if(c == 3){
+
+							             System.out.println("Phone Number");
+									     String pn = scLine.nextLine();
+
+										    for(int i=0;i<customer.length;i++){
+												clrscr();
+
+												  if(customer[i].getphoneNum().equalsIgnoreCase(pn))
+							                      {
+														System.out.println("Customer's Name :" + customer[i].getName());
+														System.out.println("Order Num :" + customer[i].getorderNum());
+														int tot = customer[i].getKurungNormal() + customer[i].getKurungLining() + customer[i].getKebayaNormal() + customer[i].getKebayaLining();
+													    if(customer[i].getAmbriodery() > 0)
+													       System.out.println("Embriodery Charge RM :" + customer[i].getAmbriodery());
+														System.out.println("Customer's order quantity :" + tot);
+														     if(dv.equalsIgnoreCase("yes")){
+																 System.out.println("The total price : RM" + (customer[i].getpayment() - customer[i].getbalance()));
+																 System.out.println("Address if customer request for delivery:" + customer1[i].getaddress());
+															     System.out.println("delivery charge RM :" + customer[i].getdelivery());
+															     System.out.println("Total price left needs to be paid by customer: RM" + ((customer[i].getpayment() - customer[i].getbalance()) + customer[i].getdelivery()));
+															   }
+														     else if(dv.equalsIgnoreCase("no")){
+
+                                                                      System.out.println("Total deposit paid: RM"+ customer[i].getdeposit());
+																	  System.out.println("The total price : RM" + ((customer[i].getpayment() - customer[i].getbalance()) + customer[i].getAmbriodery()));
+
+
+															  }
+											         }
+
+
+								             }
+
+
+
+
+
+
+
+										}
+
+						  }
+
+                }     ///
+
+
+
+       }    //
+
+
+                             /*else  if(c == 3){
+
+                                System.out.println("Phone Number");
+   							    String pn = scLine.nextLine();
+
+   							     for(int i=0;i<customer1.length;i++){
+   							 		   clrscr();
+
+   							 		if(customer1[i].getphoneNum().equalsIgnoreCase(pn))
+   							 		{
+   							 		     System.out.println("Customer's Name:" + customer1[i].getName());
+   							 			 System.out.println("Order Num:" + customer1[i].getorderNum());
+   							 			 System.out.println("Customer's order quantity:" + (customer1[i].getCekakMusang() + customer1[i].getTelukBelanga()));
+   							 	             if(dv.equalsIgnoreCase("yes")){
+   							 					 System.out.println("The total price : RM" + (customer1[i].getprice() - customer1[i].getbalance()));
+   							 			         System.out.println("Address if customer request for delivery:" + customer1[i].getaddress());
+   							 		             System.out.println("delivery charge RM :" + customer1[i].getdelivery());
+   							 				     System.out.println("Total price left needs to be paid by customer: RM" + ((customer1[i].getprice() - customer1[i].getbalance()) + customer1[i].getdelivery()));
+   							 				 }
+   							 				 else if(dv.equalsIgnoreCase("no")){
+
+   							 						 System.out.println("The total price : RM" + (customer1[i].getprice() - customer1[i].getbalance()));
+   							 				         System.out.println("Total deposit paid: RM"+ customer1[i].getdeposit());
+
+   							 			     }
+   							 		 }
+						 }
+
+			  }
+
+	}
+
+}
+*/
+
+   				   /* else if(tc == 2){
+
+   						displayChoice();
+   	                    int c = sc.nextInt();
+
+   	                    if(c == 1){
+
+   						   System.out.println("Order Number");
+   				           String on = scLine.nextLine();
+
+   						     for(int i=0;i<customer.length;i++){
+   								   clrscr();
+
+   									if(customer[i].getphoneNum().equalsIgnoreCase(on))
+   						    		{
+   										    System.out.println("Customer's Name:" + customer[i].getName());
+   											System.out.println("Order Num:" + customer[i].getorderNum());
+   											System.out.println("Customer's order quantity:" + (customer[i].getkurungNormal() + customer[i].getkurungLining() + customer[i].getkebayaNormal() + customer[i].getkebayaLining()));
+   										       if(dv.equalsIgnoreCase("yes")){
+   													 System.out.println("The total price : RM" + (customer[i].getprice() - customer[i].getbalance()));
+   													 System.out.println("Address if customer request for delivery:" + customer1[i].getaddress());
+   												     System.out.println("delivery charge RM :" + customer[i].getdelivery());
+   												     System.out.println("Total price left needs to be paid by customer: RM" + ((customer[i].getprice() - customer[i].getbalance()) + customer[i].getdelivery()));
+   											   }
+   											   else if(dv.equalsIgnoreCase("no")){
+
+   													   System.out.println("The total price : RM" + (customer[i].getprice() - customer[i].getbalance()));
+   													   System.out.println("Total deposit paid: RM"+ customer[i].getdeposit());
+
+   											   }
+   									}
+
+
+   							  }
+
+
+
+
+
+					}
+   						 else if(c == 2){
+
+   							 System.out.println("Name");
+   							 String nm = scLine.nextLine();
+
+   							 for(int i=0;i<customer.length;i++){
+   							 	clrscr();
+
+   							 	  if(customer[i].getphoneNum().equalsIgnoreCase(nm))
+   							 	  {
+   							 		   System.out.println("Customer's Name:" + customer[i].getName());
+   							 		   System.out.println("Order Num:" + customer[i].getorderNum());
+   							 		   System.out.println("Customer's order quantity:" + (customer[i].getkurungNormal() + customer[i].getkurungLining() + customer[i].getkebayaNormal() + customer[i].getkebayaLining()));
+   							 			   if(dv.equalsIgnoreCase("yes")){
+   							 					 System.out.println("The total price : RM" + (customer[i].getprice() - customer[i].getbalance()));
+   							 					 System.out.println("Address if customer request for delivery:" + customer1[i].getaddress());
+   							 				     System.out.println("delivery charge RM :" + customer[i].getdelivery());
+   							 				     System.out.println("Total price left needs to be paid by customer: RM" + ((customer[i].getprice() - customer[i].getbalance()) + customer[i].getdelivery()));
+   							 			   }
+   							 			   else if(dv.equalsIgnoreCase("no")){
+
+   							 					   System.out.println("The total price : RM" + (customer[i].getprice() - customer[i].getbalance()));
+   							 					   System.out.println("Total deposit paid: RM"+ customer[i].getdeposit());
+
+   							 			   }
+   								   }
+
+
+   							 }
+
+
+
+
+
+
+
+				 }
+   						else {
+
+   							 System.out.println("Phone Number");
+   						     String  pn = scLine.nextLine();
+
+   							 	for(int i=0;i<customer.length;i++){
+   							 		 clrscr();
+
+   							 		if(customer[i].getphoneNum().equalsIgnoreCase(pn))
+   							 		{
+   							        	    System.out.println("Customer's Name:" + customer[i].getName());
+   							 				System.out.println("Order Num:" + customer[i].getorderNum());
+   							 				System.out.println("Customer's order quantity:" + (customer[i].getkurungNormal() + customer[i].getkurungLining() + customer[i].getkebayaNormal() + customer[i].getkebayaLining()));
+   							 			       if(dv.equalsIgnoreCase("yes")){
+   							 						 System.out.println("The total price : RM" + (customer[i].getprice() - customer[i].getbalance()));
+   							 						 System.out.println("Address if customer request for delivery:" + customer1[i].getaddress());
+   							 	     			     System.out.println("delivery charge RM :" + customer[i].getdelivery());
+   							 					     System.out.println("Total price left needs to be paid by customer: RM" + ((customer[i].getprice() - customer[i].getbalance()) + customer[i].getdelivery()));
+   							 				   }
+   							 				   else if(dv.equalsIgnoreCase("no")){
+
+   							 						   System.out.println("The total price : RM" + (customer[i].getprice() - customer[i].getbalance()));
+   							 						   System.out.println("Total deposit paid: RM"+ customer[i].getdeposit());
+
+   							 				   }
+   							 		}
+
+
+
+							   }
+
+
+			        }
+
+
+
+
+
+
+
+
+
+
+
+             }
+
+
+
+   }
+   */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	    /*customer1[b] = new BajuMelayu();
+	    customer[b] = new BajuKurung();
+	    String[] name = new String[100];
+	    String[] phoneNumber = new String[100];
+	    double[] deposit = new double[100];
+	    String[] randomstring = new String[100];
+	    System.out.print("please enter customer  full name :");
+	    name[b] = sc.nextLine();
+	    System.out.print("please enter Phone number :");
+	    phoneNumber[b] = sc.nextLine();
+	    System.out.print("enter amount of deposit :");
+	    deposit[b] = sc.nextDouble();
+	    sc.nextLine();
+	    //order number generator
+	    //determine order number for each customer(order number)
+	    String nama = name[b];
+	    String fn = phoneNumber[b];
+	    int lenght = 5;
+	    String on =  nama + fn;
+	    StringBuilder sb = new StringBuilder();
+	    Random random = new Random();
+	    for(int a = 0;a<lenght;a++) {
+
+	    int rand = random.nextInt(on.length());
+	    char randomChar = on.charAt(rand);
+
+	    sb.append(randomChar);
+
+	    }
+	    randomstring[b] = sb.toString().toUpperCase();
+
+	    customer[b].setData(name[b], phoneNumber[b], deposit[b],randomstring[b]);
+
+	    // get input for baju melayu
+	    System.out.println(" baju melayu cekak musang:");
+	    int type = sc.nextInt();
+	    System.out.println(" baju melayu teluk belanga:");
+	    int type1 = sc.nextInt();
+	    System.out.println("");
+	    totBm = totBm + qt.length;
+
+	    }
+
+	    // get input for baju kurung
+	    System.out.println("Baju kurung Normal:");
+	    int type = sc.nextInt();
+	    System.out.println("No embroidery:");
+	    int emb = sc.nextInt();
+	    System.out.println("Add embroidery:");
+	    int emb
+
+	    totBk = totBk + qt1.length;//get maximum of baju kurung been ordered
+	    customer[b].embr(embr);
+	    bkprice = customer[b].payment(bk, qt1);
+	    }
+
+	    //System.out.print("Delivery service [type true / false] :");
+	    //boolean res = sc.nextBoolean();
+	    //customer[b].setData(res);
+
+	    double totalPayment =  bkprice + bmprice + customer[b].getAmbriodery() - customer[b].getdeposit()[b] ;
+
+	    customer[b].Balance(totalPayment);
+	    /*double totalPrice = (customer[b].payment() + customer1[b].payment() + customer[b].getAmbriodery()) - customer[b].getdeposit();
+	    customer[b].Balance(totalPrice);*/
+	    /* *
+	    for(;;) {
+	    delivery();
+	    String res = sc.nextLine();
+	    if(!res.equalsIgnoreCase("yes") && !res.equalsIgnoreCase("no"))
+	    System.out.println("Sorry!! please reenter your choice");
+	    else if(res.equalsIgnoreCase("yes")){
+	    dev = true;
+	    customer[b].setData(dev);
+	    break;
+	    }
+	    else {
+	    dev = false;
+	    customer[b].setData(dev);
+	    break;
+	    }
+	    }
+	    //String[] on1 = customer[b].getorderNum();
+	    //String[] nm = customer[b].getName();
+
+	    if(customer[b].getdelivery() == true) {
+	    System.out.print("Customer Info [Address] :");
+	    String add = sc.nextLine();
+	    System.out.println("Charge for delivery service RM :5.00 ");
+	    System.out.println("Delivery Address :" + add);
+	    System.out.println("The total price include delivery that has to be paid is rm :" + (customer[b].getbalance() + 5.00));
+	    System.out.println(customer[b].getorderNum());
+	    }
+	    else if(customer[b].getdelivery() == false){
+	    System.out.println("Total balance " + customer[b].getName()[b] + " has to be paid is rm :" + customer[b].getbalance());
+	    System.out.println("Order number - " + customer[b].getorderNum()[b]);
+
+	    }
+
+
+	    System.out.println(" ---------------------------------------------------------- ");
+	    System.out.print("continue for other customer?[yes / no] :");
+	    String cn = sc.nextLine();
+	    i = cn;
+	    b++;
+
+
+	    if(ch == 1) {
+
+	    System.out.println("baju melayu cekak musang ordered :" + customer1[0].getCekakMusang());
+	    System.out.println("baju melayu teluk belanga ordered :" + customer1[0].getTelukBelanga());
+	    System.out.println("baju kurung normal ordered :" + customer[0].getKurungNormal());
+	    System.out.println("baju kurung lining ordered :" + customer[0].getKurungLining());
+	    System.out.println("baju kebaya normal  ordered :" + customer[0].getKebayaNormal());
+	    System.out.println("baju kebaya lining ordered :" + customer[0].getKebayaLining());
+	    System.out.println("baju kurung normal with embriodery :" + dt6);
+	    System.out.println("baju kurung lining with embriodery:" + dt7);
+	    System.out.println("baju kebaya normal :" + dt8);
+	    System.out.println("baju kebaya lining :" + dt9);
+
+	    }
+
+	    }
+
+	    /* //question iii (maximum)
+	    System.out.println("Total of baju kurung have been ordered is :" + totBk);
+	    System.out.println("Total of baju melayu have been ordered is :" + totBm);
+
+	    System.out.println("Searching Information ?");
+	    System.out.println("insert customer name :");
+	    String search = sc.nextLine();
+	    int h = customer.length;
+	    for(int i=0;i<h;i++) {
+
+	    customer[i] = new BajuKurung();
+
+	    if(customer[i].getName()[i].equals(search)) {
+
+	    System.out.println("Name :" + customer[i].getName()[i]);
+	    System.out.println("Phone Number :" + customer[i].getphonNum()[i]);
+	    System.out.println("Order Number :" + customer[i].getorderNum()[i]);
+	    System.out.println("Type of baju melayu :" );
+	    System.out.println("jklj");
+
+	    }
+
+	    }
+
+	    }    */
+
+
+
+
+
+	    public static void ChoiceBajumelayu(){
+	        System.out.println("1) baju melayu cekak musang");
+	        System.out.println("2) baju melayu teluk belanga");
+
+	    }
+
+	    public static void ChoiceBajukurung(){
+	        System.out.println("1) baju kurung normal");
+	        System.out.println("2) baju kurung kurung lining");
+	        System.out.println("3) baju kebaya normal");
+	        System.out.println("4) baju kebaya lining");
+
+	    }
+
+	    public static void Choice(){
+
+	        System.out.println("1) baju melayu");
+	        System.out.println("2) baju kurung");
+	        System.out.println("3) find each type baju kurung and baju melayu sold");
+	        System.out.println("4) find maximum order for baju mealyu and baju kurung");
+	        System.out.println("5) display customer(s) order detail");
+	    }
+
+	    public static void displayChoice(){
+
+	        System.out.println("1) Order Number");
+	        System.out.println("2) Name");
+	        System.out.println("3) Phone Number");
+
+	    }
+
+
+	    public static void typechoice(){
+
+		    System.out.println("1) Search Baju Melayu");
+		    System.out.println("2) Search Baju Kurung");
+	    }
+}
